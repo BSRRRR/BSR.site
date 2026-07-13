@@ -1,605 +1,799 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BSR GAMING | Official Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSR GAMING | Official Portfolio & Hub</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #0a0a0c;
+            --bg-card: #141418;
+            --text-main: #ffffff;
+            --text-muted: #a0a0ab;
+            --primary: #FF0000;
+            --primary-hover: #cc0000;
+            --glass-bg: rgba(20, 20, 24, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.3s ease;
+        }
 
-<style>
-:root{
-    --bg:#0b0b0b;
-    --card:#181818;
-    --glass:rgba(255,255,255,.08);
-    --text:#ffffff;
-    --muted:#bdbdbd;
-    --primary:#FF0000;
-    --border:rgba(255,255,255,.1);
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
-    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
-}
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-body{
-    background:var(--bg);
-    color:var(--text);
-    overflow-x:hidden;
-}
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at top left,#ff000015,transparent 40%),
-    radial-gradient(circle at bottom right,#ff000010,transparent 40%);
-    z-index:-1;
-}
+        /* Utility Classes & Typography */
+        h1, h2, h3, .logo {
+            font-family: var(--font-display);
+            letter-spacing: 1px;
+        }
 
-/* NAVBAR */
+        section {
+            padding: 100px 10% 80px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:999;
-    backdrop-filter:blur(14px);
-    background:rgba(0,0,0,.55);
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            text-transform: uppercase;
+        }
 
-.nav-container{
-    width:min(1200px,92%);
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    height:75px;
-}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
 
-.logo{
-    font-size:1.5rem;
-    font-weight:bold;
-    color:#fff;
-    letter-spacing:1px;
-}
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-family: var(--font-display);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: var(--transition);
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
 
-.logo span{
-    color:var(--primary);
-}
+        .btn-primary {
+            background: var(--primary);
+            color: var(--text-main);
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
 
-.nav-links{
-    display:flex;
-    gap:30px;
-    list-style:none;
-}
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+        }
 
-.nav-links a{
-    text-decoration:none;
-    color:#fff;
-    transition:.3s;
-}
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--text-main);
+            margin-left: 15px;
+        }
 
-.nav-links a:hover{
-    color:var(--primary);
-}
+        .btn-secondary:hover {
+            background: var(--text-main);
+            color: var(--bg-main);
+            transform: translateY(-3px);
+        }
 
-.hamburger{
-    display:none;
-    font-size:1.6rem;
-    cursor:pointer;
-}
+        .btn-discord {
+            background: #5865F2;
+            color: var(--text-main);
+            border: 2px solid #5865F2;
+            margin-left: 15px;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+        }
 
-/* HERO */
+        .btn-discord:hover {
+            background: #4752c4;
+            border-color: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
+        }
 
-.hero{
-    min-height:90vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:120px 20px 60px;
-}
+        /* Navbar with Glassmorphism */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            transition: var(--transition);
+        }
 
-.hero-content{
-    max-width:850px;
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+        }
 
-.hero h1{
-    font-size:4rem;
-    margin-bottom:20px;
-}
+        .logo span {
+            color: var(--primary);
+        }
 
-.hero h1 span{
-    color:var(--primary);
-}
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
 
-.hero p{
-    color:var(--muted);
-    line-height:1.8;
-    font-size:1.1rem;
-}
+        .nav-links li {
+            margin-left: 30px;
+        }
 
-.btns{
-    margin-top:40px;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
 
-.btn{
-    padding:15px 30px;
-    border:none;
-    text-decoration:none;
-    border-radius:50px;
-    transition:.3s;
-    font-weight:bold;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
 
-.btn-primary{
-    background:var(--primary);
-    color:#fff;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-.btn-outline{
-    border:2px solid var(--primary);
-    color:#fff;
-}
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
-.btn:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:0 0 25px rgba(255,0,0,.45);
-}
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+        }
 
-/* SECTION */
+        /* Hero Section (90vh) */
+        #hero {
+            height: 90vh;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 10, 12, 0.8), rgba(10, 10, 12, 0.95)), 
+                        radial-gradient(circle at center, rgba(255, 0, 0, 0.15) 0%, transparent 60%);
+            padding-top: 100px;
+        }
 
-section{
-    width:min(1200px,92%);
-    margin:auto;
-    padding:90px 0;
-}
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: fadeInDown 1s ease;
+        }
 
-.section-title{
-    text-align:center;
-    font-size:2.2rem;
-    margin-bottom:50px;
-}
+        .hero-content h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
 
-.section-title span{
-    color:var(--primary);
-}
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
 
-/* VIDEOS */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
 
-.video-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
+        .hero-buttons .btn {
+            margin: 0;
+        }
 
-.video-card{
-    background:var(--card);
-    border-radius:18px;
-    overflow:hidden;
-    transition:.35s;
-    border:1px solid var(--border);
-}
+        /* Videos Feed Section */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
 
-.video-card:hover{
-    transform:translateY(-8px) scale(1.02);
-}
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
 
-.video-card iframe{
-    width:100%;
-    height:220px;
-}
+        .video-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.15);
+        }
 
-.video-info{
-    padding:18px;
-}
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
 
-.video-info h3{
-    font-size:1rem;
-    margin-bottom:12px;
-}
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
 
-.video-info p{
-    color:var(--muted);
-    font-size:.9rem;
-}
+        .video-card:hover .video-thumbnail img {
+            scale: 1.05;
+        }
 
-/* ABOUT */
+        .video-info {
+            padding: 20px;
+        }
 
-.about{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:50px;
-    align-items:center;
-}
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 3.2em;
+        }
 
-.about-card{
-    background:var(--card);
-    padding:35px;
-    border-radius:20px;
-    border:1px solid var(--border);
-}
+        /* Skeleton Loader for Feed */
+        .skeleton {
+            background: #1a1a22;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-    margin-top:30px;
-}
+        /* About & Channel Stats Section */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
 
-.stat{
-    background:#101010;
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-}
+        .about-text {
+            flex: 1;
+        }
 
-.stat h2{
-    color:var(--primary);
-}
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
 
-/* CONTACT */
+        .stats-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
 
-form{
-    display:grid;
-    gap:20px;
-    max-width:700px;
-    margin:auto;
-}
+        .stat-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
 
-input,textarea{
-    background:#121212;
-    border:1px solid #333;
-    padding:16px;
-    color:#fff;
-    border-radius:12px;
-}
+        .stat-card:hover {
+            border-color: var(--primary);
+            background: linear-gradient(145deg, var(--bg-card), rgba(255, 0, 0, 0.02));
+        }
 
-textarea{
-    resize:vertical;
-    min-height:180px;
-}
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
 
-button{
-    border:none;
-    cursor:pointer;
-}
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
 
-/* FOOTER */
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-footer{
-    margin-top:70px;
-    padding:40px 20px;
-    background:#050505;
-    text-align:center;
-}
+        /* Contact Section */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+        }
 
-.social{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    margin:20px 0;
-}
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-.social a{
-    width:50px;
-    height:50px;
-    display:grid;
-    place-items:center;
-    border-radius:50%;
-    background:#111;
-    color:#fff;
-    transition:.3s;
-    text-decoration:none;
-}
+        .form-group label {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
 
-.social a:hover{
-    background:var(--primary);
-    transform:scale(1.15);
-}
+        .form-control {
+            width: 100%;
+            background: var(--bg-main);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            padding: 12px 15px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
 
-.loading{
-    text-align:center;
-    color:#bbb;
-}
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
 
-@media(max-width:768px){
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
 
-.hero h1{
-font-size:2.5rem;
-}
+        /* Footer */
+        footer {
+            background: #050507;
+            padding: 40px 10% 20px 10%;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
 
-.nav-links{
-position:absolute;
-top:75px;
-right:-100%;
-background:#111;
-width:250px;
-display:flex;
-flex-direction:column;
-padding:25px;
-transition:.4s;
-}
+        .footer-socials {
+            margin-bottom: 25px;
+        }
 
-.nav-links.active{
-right:0;
-}
+        .footer-socials a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: var(--transition);
+            display: inline-block;
+        }
 
-.hamburger{
-display:block;
-}
+        .footer-socials a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-socials a.fa-discord:hover { color: #5865F2; }
+        .footer-socials a.fa-facebook:hover { color: #1877F2; }
+        .footer-socials a.fa-youtube:hover { color: #FF0000; }
 
-}
-</style>
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design Rules */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 10, 12, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.4s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 80px 5% 60px 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons .btn {
+                display: block;
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            
+            .contact-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-<div class="nav-container">
-
-<div class="logo">
-BSR <span>GAMING</span>
-</div>
-
-<ul class="nav-links">
-<li><a href="#home">Home</a></li>
-<li><a href="#videos">Videos</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
-<div class="hamburger">
-<i class="fas fa-bars"></i>
-</div>
-
-</div>
-</nav>
-
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-<div class="hero-content">
-
-<h1>Welcome to <span>BSR GAMING</span></h1>
-
-<p>
-Gaming Content Creator & YouTuber sharing gameplay, livestreams,
-tips, highlights and entertainment for gamers around the world.
-Join the community and never miss the latest uploads.
-</p>
-
-<div class="btns">
-
-<a class="btn btn-primary"
-target="_blank"
-href="https://www.youtube.com/channel/UC5PvNMeNJAUqdI91a_QuKzA">
-Subscribe
-</a>
-
-<a class="btn btn-outline" href="#videos">
-Latest Videos
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- VIDEOS -->
-
-<section id="videos">
-
-<h2 class="section-title">
-Latest <span>YouTube Videos</span>
-</h2>
-
-<div id="videoGrid" class="video-grid">
-
-<div class="loading">
-Loading latest videos...
-</div>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about">
-
-<h2 class="section-title">
-About <span>BSR GAMING</span>
-</h2>
-
-<div class="about">
-
-<div class="about-card">
-
-<h2>Who Am I?</h2>
-
-<br>
-
-<p style="color:#cfcfcf;line-height:1.8;">
-BSR GAMING is dedicated to bringing high-quality gaming content,
-gameplay videos, livestreams, tutorials, and exciting moments
-from popular games. The mission is to entertain and build an
-amazing gaming community.
-</p>
-
-</div>
-
-<div class="about-card">
-
-<h2>Channel Highlights</h2>
-
-<div class="stats">
-
-<div class="stat">
-<h2 id="videoCount">--</h2>
-<p>Videos</p>
-</div>
-
-<div class="stat">
-<h2 id="subscriberCount">---</h2>
-<p>Subscribers</p>
-</div>
-
-<div class="stat">
-<h2 id="viewCount">---</h2>
-<p>Views</p>
-</div>
-
-<div class="stat">
-<h2>24/7</h2>
-<p>Gaming Passion</p>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-<h2 class="section-title">
-Contact <span>Me</span>
-</h2>
-
-<form>
-
-<input type="text" placeholder="Your Name">
-
-<input type="email" placeholder="Your Email">
-
-<textarea placeholder="Write your message..."></textarea>
-
-<button class="btn btn-primary">
-Send Message
-</button>
-
-</form>
-
-</section>
-
-<footer>
-
-<h2>BSR GAMING</h2>
-
-<div class="social">
-
-<a href="https://www.youtube.com/channel/UC5PvNMeNJAUqdI91a_QuKzA" target="_blank">
-<i class="fab fa-youtube"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-facebook-f"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-instagram"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-discord"></i>
-</a>
-
-</div>
-
-<p style="color:#999;">
-© 2026 BSR GAMING. All Rights Reserved.
-</p>
-
-</footer>
-
-<script>
-
-// Mobile Menu
-
-const menu=document.querySelector(".hamburger");
-const nav=document.querySelector(".nav-links");
-
-menu.onclick=()=>{
-nav.classList.toggle("active");
-};
-
-// RSS Feed
-
-const channelId="UC5PvNMeNJAUqdI91a_QuKzA";
-
-const rss=`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-
-const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`;
-
-fetch(api)
-.then(r=>r.json())
-.then(data=>{
-
-const grid=document.getElementById("videoGrid");
-grid.innerHTML="";
-
-document.getElementById("videoCount").innerText=data.items.length;
-
-document.getElementById("subscriberCount").innerText="YouTube";
-document.getElementById("viewCount").innerText="Live";
-
-data.items.slice(0,3).forEach(item=>{
-
-let id="";
-
-if(item.guid.includes("yt:video:")){
-id=item.guid.split("yt:video:")[1];
-}else{
-const match=item.link.match(/v=([^&]+)/);
-if(match) id=match[1];
-}
-
-const card=document.createElement("div");
-card.className="video-card";
-
-card.innerHTML=`
-<iframe
-src="https://www.youtube.com/embed/${id}"
-allowfullscreen>
-</iframe>
-
-<div class="video-info">
-<h3>${item.title}</h3>
-<p>${new Date(item.pubDate).toLocaleDateString()}</p>
-</div>
-`;
-
-grid.appendChild(card);
-
-});
-
-})
-.catch(()=>{
-
-document.getElementById("videoGrid").innerHTML=
-"<p class='loading'>Unable to load videos at the moment.</p>";
-
-});
-
-</script>
-
+    <!-- Header / Navbar -->
+    <nav>
+        <a href="#hero" class="logo">BSR <span>GAMING</span></a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Welcome to <span>BSR GAMING</span></h1>
+            <p>High-octane gameplay, raw walkthroughs, in-depth hardware reviews, and daily standard-setting content creation. Join the crew today.</p>
+            <div class="hero-buttons">
+                <a href="https://www.youtube.com/channel/UC5PvNMeNJAUqdI91a_QuKzA?sub_confirmation=1" target="_blank" class="btn btn-primary"><i class="fab fa-youtube"></i> Subscribe Now</a>
+                <a href="https://discord.com/invite/4twm76zE8H" target="_blank" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
+                <a href="#videos" class="btn btn-secondary">Latest Videos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Video Feed Section -->
+    <section id="videos">
+        <h2 class="section-title">Latest Drops</h2>
+        <div class="video-grid" id="youtube-feed">
+            <!-- Skeleton items while loading -->
+            <div class="video-card">
+                <div class="video-thumbnail skeleton"></div>
+                <div class="video-info">
+                    <div class="skeleton" style="height:20px; width:90%; margin-bottom:10px;"></div>
+                    <div class="skeleton" style="height:20px; width:70%; margin-bottom:20px;"></div>
+                    <div class="skeleton" style="height:35px; width:40%;"></div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail skeleton"></div>
+                <div class="video-info">
+                    <div class="skeleton" style="height:20px; width:90%; margin-bottom:10px;"></div>
+                    <div class="skeleton" style="height:20px; width:70%; margin-bottom:20px;"></div>
+                    <div class="skeleton" style="height:35px; width:40%;"></div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail skeleton"></div>
+                <div class="video-info">
+                    <div class="skeleton" style="height:20px; width:90%; margin-bottom:10px;"></div>
+                    <div class="skeleton" style="height:20px; width:70%; margin-bottom:20px;"></div>
+                    <div class="skeleton" style="height:35px; width:40%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section & Stats -->
+    <section id="about">
+        <h2 class="section-title">Channel Intel</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <h3>Behind The Screen</h3>
+                <br>
+                <p>BSR GAMING is a premiere digital hub focusing on competitive multiplayer games, survival thrillers, and pushing modern PC setups to their absolute technical thresholds.</p>
+                <p>Driven by community engagement and high-quality production, this channel acts as a nexus point for global gamers looking to level up their knowledge, execution, and gear choices.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Subscribers</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-play-circle"></i>
+                    <div class="stat-number">15M+</div>
+                    <div class="stat-label">Total Views</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-video"></i>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Videos Posted</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Grind Cycle</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Initiate Contact</h2>
+        <div class="contact-container">
+            <form id="contact-form" action="#" method="POST" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name / Alias</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Secure Email Target</label>
+                    <input type="email" id="email" class="form-control" placeholder="yourname@domain.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Transmission Subject</label>
+                    <input type="text" id="subject" class="form-control" placeholder="Sponsorship, Collaboration, Question..." required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Secure Message Payload</label>
+                    <textarea id="message" class="form-control" placeholder="Type your message details here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="border:none; width: 100%;">Send Transmission</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-socials">
+            <a href="https://www.youtube.com/channel/UC5PvNMeNJAUqdI91a_QuKzA" target="_blank" aria-label="YouTube" class="fab fa-youtube"></a>
+            <a href="https://discord.com/invite/4twm76zE8H" target="_blank" aria-label="Discord" class="fab fa-discord"></a>
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="fab fa-facebook"></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="fab fa-twitter"></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="fab fa-instagram"></a>
+        </div>
+        <p>&copy; 2026 BSR GAMING. All Operations Active. Designed for Performance.</p>
+    </footer>
+
+    <!-- JavaScript (UI Management & Dynamic Feed Data Integration) -->
+    <script>
+        // 1. Mobile Hamburger Menu Toggle Management
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navLinksElement = document.getElementById('nav-links');
+        const menuIcon = hamburgerBtn.querySelector('i');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navLinksElement.classList.toggle('active');
+            
+            if(navLinksElement.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksElement.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 2. Fetch Dynamic Content via YouTube RSS via rss2json Engine Proxy
+        async function fetchYouTubeFeed() {
+            const channelId = 'UC5PvNMeNJAUqdI91a_QuKzA';
+            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+            const apiTarget = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            const container = document.getElementById('youtube-feed');
+
+            try {
+                const response = await fetch(apiTarget);
+                if (!response.ok) throw new Error('Network query payload fault detected.');
+                
+                const data = await response.json();
+                
+                if (data.status === 'ok' && data.items && data.items.length > 0) {
+                    container.innerHTML = '';
+                    const itemsToRender = data.items.slice(0, 3);
+                    
+                    itemsToRender.forEach(item => {
+                        let videoId = '';
+                        if(item.guid && item.guid.includes('yt:video:')) {
+                            videoId = item.guid.replace('yt:video:', '');
+                        } else if (item.link) {
+                            const urlParams = new URLSearchParams(new URL(item.link).search);
+                            videoId = urlParams.get('v');
+                        }
+
+                        if(!videoId) return;
+
+                        const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+                        const cardHtml = `
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="${item.title}" onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg';">
+                                </div>
+                                <div class="video-info">
+                                    <h3 class="video-title">${item.title}</h3>
+                                    <a href="${videoUrl}" target="_blank" class="btn btn-primary btn-video"><i class="fab fa-youtube"></i> Watch Video</a>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += cardHtml;
+                    });
+                } else {
+                    showFeedFallbackError();
+                }
+            } catch (error) {
+                console.error('Error handling background operations pipeline:', error);
+                showFeedFallbackError();
+            }
+        }
+
+        function showFeedFallbackError() {
+            const container = document.getElementById('youtube-feed');
+            container.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <p>Failed to initialize operational data channel link with YouTube RSS interface infrastructure.</p>
+                    <a href="https://www.youtube.com/channel/UC5PvNMeNJAUqdI91a_QuKzA" target="_blank" class="btn btn-primary" style="margin-top: 15px;">Go Direct To Channel</a>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchYouTubeFeed);
+
+        // 3. Form Submission Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Transmission Received! Our operational center will parse your data structural parameters shortly.');
+            document.getElementById('contact-form').reset();
+        }
+    </script>
 </body>
 </html>
